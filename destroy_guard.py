@@ -1943,6 +1943,11 @@ def _runner(quote=shlex.quote) -> str:
     import shutil
     if shutil.which("destroy-guard"):
         return "destroy-guard"
+    # Installed into a virtual environment that is not activated: the console script sits next to
+    # the interpreter, and its path is what the person can type, not the module inside site-packages.
+    script = shutil.which("destroy-guard", path=str(Path(sys.executable).parent))
+    if script:
+        return quote(script)
     return "python3 " + quote(str(Path(__file__).resolve()))
 
 

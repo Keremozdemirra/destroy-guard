@@ -103,15 +103,23 @@ ask "make a backup before you delete this" or "why did destroy-guard ask?". The 
 
 ### Command line
 
+It is not on PyPI; install it from GitHub, pinned to the `v0.1.0` tag (drop `@v0.1.0` for
+the newest commit on `main`):
+
 ```bash
-uvx destroy-guard@0.1.0 backup -- terraform destroy          # make a backup
-uvx destroy-guard@0.1.0 check -- kubectl delete ns staging    # what the hook would say
-pipx run --spec destroy-guard==0.1.0 destroy-guard list       # the same with pipx
+pipx install git+https://github.com/Keremozdemirra/destroy-guard@v0.1.0    # puts destroy-guard and destroy-guard-hook on PATH
+destroy-guard backup -- terraform destroy          # make a backup
+destroy-guard check -- kubectl delete ns staging    # what the hook would say
+destroy-guard list
 ```
+
+Or without installing: `uvx --from git+https://github.com/Keremozdemirra/destroy-guard@v0.1.0 destroy-guard check -- terraform destroy`.
+`pip install git+https://github.com/Keremozdemirra/destroy-guard@v0.1.0` works too. From a checkout:
+`git clone https://github.com/Keremozdemirra/destroy-guard && python3 destroy-guard/destroy_guard.py list`.
 
 ### As a hook, without the plugin
 
-Install it once (`pipx install destroy-guard==0.1.0`), then in `.claude/settings.json`:
+Install it once (`pipx install git+https://github.com/Keremozdemirra/destroy-guard@v0.1.0`), then in `.claude/settings.json`:
 
 ```json
 {

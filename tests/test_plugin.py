@@ -94,7 +94,7 @@ class Packaging(Isolated):
         text = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("/plugin marketplace add Keremozdemirra/destroy-guard", text)
         self.assertIn("/plugin install destroy-guard@destroy-guard", text)
-        self.assertIn(f"uvx destroy-guard@{dg.VERSION}", text)
+        self.assertIn(f"pipx install git+https://github.com/Keremozdemirra/destroy-guard@v{dg.VERSION}", text)
         self.assertTrue(text.rstrip().split("\n## ")[-1].startswith("What this is not"))
 
 

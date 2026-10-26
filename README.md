@@ -229,7 +229,7 @@ Not in scope, and not asked about:
 
 ## Freshness and the exact target
 
-A backup counts for 30 minutes. That window is this tool's own choice, not a standard: long
+A backup counts for 30 minutes. That window is this tool's own choice: long
 enough to make a backup and then run the command, short enough that the target has probably
 not changed in between. `DESTROY_GUARD_MAX_AGE_MINUTES` changes it; a value that is not a
 number of minutes above 0 and up to 10080 (a week) falls back to 30. A manifest dated more
@@ -357,7 +357,7 @@ Offline, standard library only. The suite covers:
 ## What this is not
 
 - **Not a backup of your data.** A Terraform state backup restores Terraform's record of the
-  resources, not the rows in a database, the objects in a bucket or the files on a volume.
+  resources and holds none of the rows in a database, the objects in a bucket or the files on a volume.
   In the incident above it would not have brought the database back; a provider snapshot
   did. For data, use the provider's own protection: deletion protection, final snapshots,
   retained volumes, versioned buckets, `prevent_destroy`.
